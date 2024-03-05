@@ -1,18 +1,20 @@
-import { useState, useEffect } from 'react'
-import './App.css'
-import { GenericService } from './environments/generic.service'
-import Header from './components/Header'
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import './App.css';
+import Header from './components/Header';
+import Login from './components/login'; 
 
 function App() {
-
   return (
-    <>
-    <Header />
-    </>
-    
-
-     
-  )
+    <Router>
+      <div className="w-full">
+        <Header />
+        <Switch>
+          <Route path="/login" Component={Login} />
+        </Switch>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;

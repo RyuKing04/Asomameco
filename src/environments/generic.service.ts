@@ -2,12 +2,16 @@ import { environment } from "./enviroments";
 import axios, { AxiosResponse } from "axios";
 
 export class GenericService {
-    private apiUrl: string = environment.apiUrl;
+    private Apiurl: string = environment.apiUrl;
     
-    public async get<T>(url: string): Promise<AxiosResponse<T>> {
-        return await axios.get<T>(this.apiUrl + url);
+    public async list(endpoint: string): Promise<AxiosResponse> {
+        return await axios.get(this.Apiurl + endpoint);
+
     }
- 
+    public async getBy(endpoint: string, filter: any): Promise<any | any[]> {
+        console.log(this.Apiurl + endpoint);
+        return await axios.get(this.Apiurl + endpoint + "/" + filter);
+      } 
     
     
     
