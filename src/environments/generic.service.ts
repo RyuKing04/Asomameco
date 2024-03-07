@@ -13,6 +13,9 @@ export class GenericService {
         return await axios.get(this.Apiurl + endpoint + "/" + filter);
       } 
     
-    
+      public async post (endpoint: string, data: any): Promise<AxiosResponse> {
+        return await axios.post(this.Apiurl + endpoint, data);
+      }
+
     
 }

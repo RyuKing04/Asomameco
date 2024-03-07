@@ -8,7 +8,7 @@ export class AuthService{
 
     public async login(usuario:any){
      try {
-        const response = await axios.post(this.Apiurl + "auth", usuario);
+        const response = await axios.post(this.Apiurl + "Auth/login", usuario);
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("currentMember", JSON.stringify(response.data.usuario)
         );

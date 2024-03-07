@@ -17,7 +17,7 @@ const Login = () => {
         const usuarioResponse = await authService.login(usuario);
 
         if (usuarioResponse) {
-            console.log("Usuario autenticado");
+            console.log("Usuario autenticado", usuarioResponse);
         } else {
             console.log("Usuario no autenticado");
         }
