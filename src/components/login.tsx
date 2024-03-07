@@ -23,11 +23,11 @@ const Login = () => {
         }
     };
 
-    const handleCorreoChange = (e) => {
+    const handleCorreoChange = (e:any) => {
         setCorreo(e.target.value);
     };
 
-    const handleContraseñaChange = (e) => {
+    const handleContraseñaChange = (e:any) => {
         setContraseña(e.target.value);
     };
 
