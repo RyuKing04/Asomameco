@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AuthService } from '../environments/AuthService'
 import { GenericService } from '../environments/generic.service';
 import { Link } from 'react-router-dom';
+import Logo from '../img/Logo.jpg';
 
 
 const authService = new AuthService();
@@ -120,68 +121,75 @@ const Registro = () => {
     const handleTelefonoChange = (e:any) => {
         setTelefono(e.target.value);
     };
-    return  (
-            <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-                <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-md text-center font-sans">
-                    <label htmlFor="nombre" className="block text-gray-700 text-base font-bold mb-2">Nombre:</label>
-                    <input
-                        type="text"
-                        id="nombre"
-                        value={nombre}
-                        onChange={handleNombreChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
-                    />
-                    <label htmlFor="apellidos" className="block text-gray-700 text-base font-bold mb-2">Apellidos:</label>
-                    <input
-                        type="text"
-                        id="apellidos"
-                        value={apellidos}
-                        onChange={handleApellidosChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
-                    />
-                    <label htmlFor="correo" className="block text-gray-700 text-base font-bold mb-2">Correo electrónico:</label>
-                    <input
-                        type="email"
-                        id="correo"
-                        value={correo}
-                        onChange={handleCorreoChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
-                    />
-                    <label htmlFor="telefono" className="block text-gray-700 text-base font-bold mb-2">Teléfono:</label>
-                    <input
-                        type="tel"
-                        id="telefono"
-                        value={telefono}
-                        onChange={handleTelefonoChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
-                    />
-                    <label htmlFor="contraseña" className="block text-gray-700 text-base font-bold mb-2">Contraseña:</label>
-                    <input
-                        type="password"
-                        id="contraseña"
-                        value={contraseña}
-                        onChange={handleContraseñaChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
-                    />
-                    <label htmlFor="cedula" className="block text-gray-700 text-base font-bold mb-2">Cédula:</label>
-                    <input
-                        type="text"
-                        id="cedula"
-                        value={cedula}
-                        onChange={handleCedulaChange}
-                        className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
-                    />
-                    <button
-                        type="button"
-                        onClick={handleRegister}
-                        className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded focus:outline-none"
-                    >
-                        Registrarse
-                    </button>
-                  
-                </div>
+    return (
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+          <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-md text-center font-sans mt-8">
+          <img src={Logo} alt="Asomameco logo" className="w-60 h-28 mx-auto mb-6" />
+            <h1 className="text-2xl font-bold mb-4">Bienvenido a ASOMAMECO</h1>
+            <p className="text-sm text-gray-500 mb-4">Tu puerta a un mundo de apoyo, comunidad y oportunidades</p>
+      
+            <label htmlFor="cedula" className="block text-gray-700 text-base font-bold mb-2">Cédula:</label>
+            <input
+              type="text"
+              id="cedula"
+              value={cedula}
+              onChange={handleCedulaChange}
+              className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            />
+      
+            <label htmlFor="nombre" className="block text-gray-700 text-base font-bold mb-2">Nombre:</label>
+            <input
+              type="text"
+              id="nombre"
+              value={nombre}
+              onChange={handleNombreChange}
+              className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            />
+      
+            <label htmlFor="apellidos" className="block text-gray-700 text-base font-bold mb-2">Apellidos:</label>
+            <input
+              type="text"
+              id="apellidos"
+              value={apellidos}
+              onChange={handleApellidosChange}
+              className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            />
+      
+            <label htmlFor="correo" className="block text-gray-700 text-base font-bold mb-2">Correo electrónico:</label>
+            <input
+              type="email"
+              id="correo"
+              value={correo}
+              onChange={handleCorreoChange}
+              className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            />
+      
+            <label htmlFor="contraseña" className="block text-gray-700 text-base font-bold mb-2">Contraseña:</label>
+            <input
+              type="password"
+              id="contraseña"
+              value={contraseña}
+              onChange={handleContraseñaChange}
+              className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            />
+      
+            <div className="flex items-center justify-between mb-4">
+            <button
+            type="button"
+            onClick={handleRegister}
+            className="bg-orange-500 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded focus:outline-none"
+          >
+            Registrarse
+          </button>
+      
+              <p className="text-gray-700 text-base">¿Ya tiene cuenta? <a href="/login" className="text-orange-500">Iniciar sesión</a></p>
             </div>
-    );
+          </div>
+        </div>
+      );
+      
+      
+      
     ;
 };
 
