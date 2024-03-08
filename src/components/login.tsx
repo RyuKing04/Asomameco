@@ -11,8 +11,25 @@ const authService = new AuthService();
 const Login = () => {
     const [correo, setCorreo] = useState("");
     const [contraseña, setContraseña] = useState("");
+    const [error, setError] = useState("");
+
+    const validarCorreo = (correo:any) => {
+        const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!regexCorreo.test(correo)) {
+            setError("Correo electrónico no válido");
+            return false;
+        }
+
+        return true;
+    };
+
 
     const handleLogin = async () => {
+        try {
+            if (!validarCorreo(correo)) {
+                return;
+            }
         const usuario = {
             correo: correo,
             contraseña: contraseña
@@ -22,17 +39,28 @@ const Login = () => {
 
         if (usuarioResponse) {
             console.log("Usuario autenticado", usuarioResponse);
+            // Aquí podrías redirigir o realizar otras acciones si el login fue exitoso
         } else {
             console.log("Usuario no autenticado");
+            // Puedes mostrar un mensaje de error específico o realizar acciones adicionales aquí
+            setError("Usuario no autenticado");
         }
-    };
+    } catch (error) {
+        console.error("Error en el inicio de sesión:", error);
+        
+        setError("Error en el inicio de sesión");
+    }
+};
 
     const handleCorreoChange = (e:any) => {
         setCorreo(e.target.value);
+        
+        setError("");
     };
 
     const handleContraseñaChange = (e:any) => {
         setContraseña(e.target.value);
+        setError("");
     };
 
     return (

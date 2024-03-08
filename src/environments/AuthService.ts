@@ -21,7 +21,7 @@ export class AuthService{
     }
     public async register(usuario:any){
         try {
-            const response = await axios.post(this.Apiurl + "Auth/register", usuario);
+            const response = await axios.post(this.Apiurl + "Auth/registro", usuario);
             return response.data;
         }
         catch (error) {
