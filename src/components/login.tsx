@@ -4,7 +4,9 @@ import { GenericService } from '../environments/generic.service';
 import Logo from '../img/Logo.jpg';
 import { Link } from 'react-router-dom';
 
+
 const authService = new AuthService();
+
 
 const Login = () => {
     const [correo, setCorreo] = useState("");
@@ -56,7 +58,7 @@ const Login = () => {
                 Ingreso
             </button>
             </div>
-            <p className="text-sm text-gray-500 mb-2"><Link to="/Registro">¿No tienes usuario? Regístrate</Link></p>
+            <p className="text-sm text-gray-500 mb-2"><Link to="/registro">¿No tienes usuario? Regístrate</Link></p>
             <p className="text-sm text-gray-500 mb-6"><a href="#">Olvidé mi contraseña</a></p>
         </div>
         </div>
