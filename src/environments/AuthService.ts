@@ -19,4 +19,14 @@ export class AuthService{
             return null;
         }
     }
+    public async register(usuario:any){
+        try {
+            const response = await axios.post(this.Apiurl + "Auth/register", usuario);
+            return response.data;
+        }
+        catch (error) {
+            console.error(error);
+            return null;
+        }
+    }
 }
