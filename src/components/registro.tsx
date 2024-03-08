@@ -13,9 +13,69 @@ const Registro = () => {
     const [telefono, setTelefono] = useState("");
     const [contraseña, setContraseña] = useState("");
     const [cedula, setCedula] = useState("");
+    const validarNombre = (nombre:any) => {
+        const regexNombre = /^[A-Za-z]+$/;
 
+        if (!regexNombre.test(nombre)) {
+            alert("El nombre solo debe contener letras");
+            return false;
+        }
 
+        return true;
+    };
+
+    const validarApellidos = (apellidos:any) => {
+        const regexApellidos = /^[A-Za-z]+$/;
+
+        if (!regexApellidos.test(apellidos)) {
+            alert("Los apellidos solo deben contener letras");
+            return false;
+        }
+
+        return true;
+    };
+
+    const validarTelefonoCedula = (valor:any, campo:any) => {
+        const regexNumeros = /^[0-9]+$/;
+
+        if (!regexNumeros.test(valor)) {
+            alert(`El campo ${campo} solo debe contener números`);
+            return false;
+        }
+
+        return true;
+    };
+    const validarCorreo = (correo:any) => {
+        const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!regexCorreo.test(correo)) {
+            alert("Correo electrónico no válido");
+            return false;
+        }
+
+        return true;
+    };
+    const validarContraseña = (contraseña:any) => {
+        // Agrega tus propias reglas para la contraseña, por ejemplo, longitud mínima
+        if (contraseña.length < 6) {
+            alert("La contraseña debe tener al menos 6 caracteres");
+            return false;
+        }
+
+        return true;
+    };
     const handleRegister = async () => {
+        try {
+            if (
+                !validarNombre(nombre) ||
+                !validarApellidos(apellidos) ||
+                !validarTelefonoCedula(telefono, 'teléfono') ||
+                !validarTelefonoCedula(cedula, 'cédula') ||
+                !validarCorreo(correo) ||
+                !validarContraseña(contraseña)
+            ) {
+                return;
+            }
         const usuario = {
            nombre: nombre,
             apellidos: apellidos,
@@ -29,12 +89,17 @@ const Registro = () => {
         const registroResponse = await authService.register(usuario);
 
         if (registroResponse) {
-            console.log("Usuario registrado exitosamente",registroResponse);
+            console.log("Usuario registrado exitosamente", registroResponse);
+            alert("Registro exitoso");
         } else {
             console.log("Usuario no registrado");
+            alert("Error al registrar usuario");
         }
-    };
-
+    } catch (error) {
+        console.error("Error en el registro:", error);
+        alert("Error en el registro");
+    }
+};
     const handleNombreChange = (e:any) => {
         setNombre(e.target.value);
     };
