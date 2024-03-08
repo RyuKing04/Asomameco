@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { AuthService } from '../environments/AuthService';
 import Logo from '../img/Logo.jpg';
 import { Link } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const authService = new AuthService();
@@ -64,12 +66,14 @@ const Login = () => {
         console.log('Usuario no autenticado');
         // Puedes mostrar un mensaje de error específico o realizar acciones adicionales aquí
         setError('Usuario no autenticado');
-        alert('Usuario no autenticado');
+        
+        toast.error('Usuario no autenticado');
       }
     } catch (error) {
       console.error('Error en el inicio de sesión:', error);
       setError('Error en el inicio de sesión');
-      alert('Error en el inicio de sesión');
+      
+      toast.error('Error en el inicio de sesión');
     }
   };
 
