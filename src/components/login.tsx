@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { AuthService } from '../environments/AuthService';
-import Logo from '../img/Logo.jpg';
-import { Link } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { useState, useEffect } from "react";
+import { AuthService } from "../environments/AuthService";
+import Logo from "../img/Logo.jpg";
+import { useNavigate, Link } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const authService = new AuthService();
 
 const Login = () => {
-  const [correo, setCorreo] = useState('');
-  const [contraseña, setContraseña] = useState('');
-  const [error, setError] = useState('');
+  const [correo, setCorreo] = useState("");
+  const [contraseña, setContraseña] = useState("");
+  const [error, setError] = useState("");
   const [recuerdame, setRecuerdame] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    const storedCorreo = localStorage.getItem('correo');
-    const storedRecuerdame = localStorage.getItem('recuerdame') === 'true';
+    const storedCorreo = localStorage.getItem("correo");
+    const storedRecuerdame = localStorage.getItem("recuerdame") === "true";
 
     if (storedRecuerdame && storedCorreo) {
       setCorreo(storedCorreo);
@@ -24,11 +25,11 @@ const Login = () => {
     }
   }, []);
 
-  const validarCorreo = (correo:any) => {
+  const validarCorreo = (correo: any) => {
     const regexCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!regexCorreo.test(correo)) {
-      setError('Correo electrónico no válido');
+      setError("Correo electrónico no válido");
       return false;
     }
 
@@ -49,55 +50,67 @@ const Login = () => {
       const usuarioResponse = await authService.login(usuario);
 
       if (usuarioResponse) {
-        console.log('Usuario autenticado', usuarioResponse);
-        alert('Inicio de sesión exitoso');
-        
+        console.log("Usuario autenticado", usuarioResponse);
+        alert("Inicio de sesión exitoso");
+
+        console.log(usuarioResponse.correo + "from login");
+
+        navigate("/home/" + usuarioResponse.correo);
 
         if (recuerdame) {
-          localStorage.setItem('correo', correo);
-          localStorage.setItem('recuerdame', 'true');
+          localStorage.setItem("correo", correo);
+          localStorage.setItem("recuerdame", "true");
         } else {
-          localStorage.removeItem('correo');
-          localStorage.removeItem('recuerdame');
+          localStorage.removeItem("correo");
+          localStorage.removeItem("recuerdame");
         }
 
         // Aquí podrías redirigir o realizar otras acciones si el login fue exitoso
       } else {
-        console.log('Usuario no autenticado');
+        console.log("Usuario no autenticado");
         // Puedes mostrar un mensaje de error específico o realizar acciones adicionales aquí
-        setError('Usuario no autenticado');
-        
-        toast.error('Usuario no autenticado');
+        setError("Usuario no autenticado");
+
+        toast.error("Usuario no autenticado");
       }
     } catch (error) {
-      console.error('Error en el inicio de sesión:', error);
-      setError('Error en el inicio de sesión');
-      
-      toast.error('Error en el inicio de sesión');
+      console.error("Error en el inicio de sesión:", error);
+      setError("Error en el inicio de sesión");
+
+      toast.error("Error en el inicio de sesión");
     }
   };
 
-  const handleCorreoChange = (e:any) => {
+  const handleCorreoChange = (e: any) => {
     setCorreo(e.target.value);
-    setError('');
+    setError("");
   };
 
-  const handleContraseñaChange = (e:any) => {
+  const handleContraseñaChange = (e: any) => {
     setContraseña(e.target.value);
-    setError('');
+    setError("");
   };
 
-  const handleRecuerdameChange = (e:any) => {
+  const handleRecuerdameChange = (e: any) => {
     setRecuerdame(e.target.checked);
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-10 rounded-lg shadow-md w-full max-w-md text-center font-sans">
-        <img src={Logo} alt="Asomameco logo" className="w-60 h-28 mx-auto mb-6" />
+        <img
+          src={Logo}
+          alt="Asomameco logo"
+          className="w-60 h-28 mx-auto mb-6"
+        />
         <h1 className="text-3xl font-bold mb-4">Bienvenido a ASOMAMECO</h1>
-        <p className="text-base text-gray-700 mb-4">Tu puerta a un mundo de apoyo, comunidad y oportunidades</p>
-        <label htmlFor="correo" className="block text-gray-700 text-base font-bold mb-2">
+        <p className="text-base text-gray-700 mb-4">
+          Tu puerta a un mundo de apoyo, comunidad y oportunidades
+        </p>
+        <label
+          htmlFor="correo"
+          className="block text-gray-700 text-base font-bold mb-2"
+        >
           Correo electrónico:
         </label>
         <input
@@ -107,7 +120,10 @@ const Login = () => {
           onChange={handleCorreoChange}
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
         />
-        <label htmlFor="contraseña" className="block text-gray-700 text-base font-bold mb-2">
+        <label
+          htmlFor="contraseña"
+          className="block text-gray-700 text-base font-bold mb-2"
+        >
           Contraseña:
         </label>
         <input
