@@ -26,17 +26,17 @@ const Registro = () => {
     };
 
     const validarApellidos = (apellidos:any) => {
-        const regexApellidos = /^[A-Za-z]+$/;
-
+        const regexApellidos = /^[A-Za-z\s]+$/; // Permitir letras y espacios
+    
         if (!regexApellidos.test(apellidos)) {
-            alert("Los apellidos solo deben contener letras");
+            alert("Los apellidos solo deben contener letras y espacios");
             return false;
         }
-
+    
         return true;
     };
 
-    const validarTelefonoCedula = (valor:any, campo:any) => {
+     const validarTelefonoCedula = (valor:any, campo:any) => {
         const regexNumeros = /^[0-9]+$/;
 
         if (!regexNumeros.test(valor)) {
@@ -161,6 +161,14 @@ const Registro = () => {
               id="correo"
               value={correo}
               onChange={handleCorreoChange}
+              className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
+            />
+             <label htmlFor="Telefono" className="block text-gray-700 text-base font-bold mb-2">Teléfono:</label>
+            <input
+              type="tel"
+              id="telefono"
+              value={telefono}
+              onChange={handleTelefonoChange}
               className="shadow appearance-none border rounded-full w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mb-4"
             />
       
